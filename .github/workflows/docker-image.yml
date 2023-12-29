@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build -t image_identify_image app .
+      run: docker build -t image_identify_image app

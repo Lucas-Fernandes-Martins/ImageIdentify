@@ -1,10 +1,10 @@
 from typing import Optional
-
 import typer
-
 from image_classify import __app_name__, __version__
-
 from classifier.nn import ImageClassifier
+from image_classify.server import RequestHandler
+from http.server import HTTPServer
+
 
 app = typer.Typer()
 
@@ -18,6 +18,15 @@ def classify(path: str) -> None:
     classifier = ImageClassifier()
     classifier.classify(path)
 
+@app.command()
+def run() -> None:
+    port = 8000
+    server_class=HTTPServer
+    handler_class=RequestHandler
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    print(f"Server running on port {port}")
+    httpd.serve_forever()
 
 @app.callback()
 def main(

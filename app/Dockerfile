@@ -8,4 +8,4 @@ RUN apt-get update && \
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
-CMD ["python3", "src/main.py"]
+CMD ["python3", "-m", "http.server"]
